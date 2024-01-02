@@ -1,3 +1,4 @@
+
 // API:
 // Front page besteht aus fixiert 20 relevanten(!) neuen news. D.h. keine Seite 2
 // Alle news absteigend via:
@@ -7,6 +8,7 @@
 // Da die Seiten nicht begrenzt sind - eventuell ein "weiter" oder "mehr"?
 
 import { useCallback, useEffect, useState } from "react";
+
 import NewsFeed from "./components/NewsFeed";
 import SearchBar from "./components/SearchBar";
 

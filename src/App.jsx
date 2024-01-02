@@ -1,4 +1,14 @@
-import { useEffect, useState } from "react";
+
+// API:
+// Front page besteht aus fixiert 20 relevanten(!) neuen news. D.h. keine Seite 2
+// Alle news absteigend via:
+// https://hn.algolia.com/api/v1/search_by_date?page={setPage}&tags=story
+// setPage needs to starts at 0
+// Wir brauchen also einen Button zu alle news (am ende der liste?) und dann einen seitenwechsel auf der neuen "alle news" seite.
+// Da die Seiten nicht begrenzt sind - eventuell ein "weiter" oder "mehr"?
+
+import { useCallback, useEffect, useState } from "react";
+
 import NewsFeed from "./components/NewsFeed";
 import SearchBar from "./components/SearchBar";
 

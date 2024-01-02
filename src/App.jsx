@@ -9,9 +9,18 @@ function App() {
     console.log(searchTerm);
   };
 
+  const handleSearch = () => {
+    console.log("Search triggered with term:", searchTerm);
+    // Todo: Add search logic here
+  };
+
   return (
     <>
-      <SearchBar placeholder="Search..." onSearchChange={handleSearchChange} />
+      <SearchBar
+        placeholder="Search..."
+        onSearchChange={handleSearchChange}
+        onSearch={handleSearch}
+      />
     </>
   );
 }

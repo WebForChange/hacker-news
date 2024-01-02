@@ -14,7 +14,7 @@ function App() {
 
   const handleSearch = () => {
     console.log("Search triggered with term:", searchTerm);
-    setApiLink(`http://hn.algolia.com/api/v1/search_by_date?query=${searchTerm}`);
+    setApiLink(`http://hn.algolia.com/api/v1/search_by_date?query=${searchTerm}&tags=story`);
     // Todo: Add search logic here
   };
 
@@ -33,8 +33,8 @@ function App() {
 
   return (
     <>
-      <NewsFeed apiResults={apiResults} />
       <SearchBar placeholder="Search..." onSearchChange={handleSearchChange} onSearch={handleSearch} />
+      <NewsFeed apiResults={apiResults} />
     </>
   );
 }

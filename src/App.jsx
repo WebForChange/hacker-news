@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import NewsFeed from "./components/NewsFeed";
 import SearchBar from "./components/SearchBar";
 

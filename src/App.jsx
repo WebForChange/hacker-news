@@ -45,7 +45,7 @@ function App() {
   return (
     <>
       <SearchBar placeholder="Search..." onSearchChange={handleSearchChange} onSearch={handleSearch} />
-      {!apiResults ? <HashLoader /> : <NewsFeed apiResults={apiResults} />}
+      {!apiResults ? <HashLoader color="#36d7b7" /> : <NewsFeed apiResults={apiResults} />}
     </>
   );
 }

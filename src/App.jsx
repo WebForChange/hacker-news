@@ -1,4 +1,3 @@
-
 // API:
 // Front page besteht aus fixiert 20 relevanten(!) neuen news. D.h. keine Seite 2
 // Alle news absteigend via:
@@ -11,9 +10,12 @@ import { useCallback, useEffect, useState } from "react";
 
 import NewsFeed from "./components/NewsFeed";
 import SearchBar from "./components/SearchBar";
+import Navbar from "./components/NavBar";
 
 function App() {
-  const [apiLink, setApiLink] = useState("https://hn.algolia.com/api/v1/search_by_date?&tags=front_page");
+  const [apiLink, setApiLink] = useState(
+    "https://hn.algolia.com/api/v1/search_by_date?&tags=front_page"
+  );
   const [apiResults, setApiResults] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -24,7 +26,9 @@ function App() {
 
   const handleSearch = () => {
     console.log("Search triggered with term:", searchTerm);
-    setApiLink(`http://hn.algolia.com/api/v1/search_by_date?query=${searchTerm}&tags=story`);
+    setApiLink(
+      `http://hn.algolia.com/api/v1/search_by_date?query=${searchTerm}&tags=story`
+    );
     // Todo: Add search logic here
   };
 
@@ -42,10 +46,15 @@ function App() {
   }, [apiLink]);
 
   return (
-    <>
-      <SearchBar placeholder="Search..." onSearchChange={handleSearchChange} onSearch={handleSearch} />
+    <div className="mt-2 mx-0 sm:mx-20 md:mx-40 lg:mx-80">
+      <Navbar />
+      <SearchBar
+        placeholder="Search..."
+        onSearchChange={handleSearchChange}
+        onSearch={handleSearch}
+      />
       <NewsFeed apiResults={apiResults} />
-    </>
+    </div>
   );
 }
 

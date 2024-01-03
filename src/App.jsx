@@ -23,8 +23,9 @@ function App() {
   };
 
   const handleSearch = () => {
+    setApiResults(false);
     console.log("Search triggered with term:", searchTerm);
-    setApiLink(`http://hn.algolia.com/api/v1/search_by_date?query=${searchTerm}&tags=story`);
+    setApiLink(`https://hn.algolia.com/api/v1/search_by_date?query=${searchTerm}&tags=story`);
     // Todo: Add search logic here
   };
 

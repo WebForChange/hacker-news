@@ -10,6 +10,7 @@ import { useCallback, useEffect, useState } from "react";
 
 import NewsFeed from "./components/NewsFeed";
 import SearchBar from "./components/SearchBar";
+import { HashLoader } from "react-spinners";
 
 function App() {
   const [apiLink, setApiLink] = useState("https://hn.algolia.com/api/v1/search_by_date?&tags=front_page");
@@ -22,8 +23,9 @@ function App() {
   };
 
   const handleSearch = () => {
+    setApiResults(false);
     console.log("Search triggered with term:", searchTerm);
-    setApiLink(`http://hn.algolia.com/api/v1/search_by_date?query=${searchTerm}&tags=story`);
+    setApiLink(`https://hn.algolia.com/api/v1/search_by_date?query=${searchTerm}&tags=story`);
     // Todo: Add search logic here
   };
 
@@ -43,8 +45,7 @@ function App() {
   return (
     <>
       <SearchBar placeholder="Search..." onSearchChange={handleSearchChange} onSearch={handleSearch} />
-      {!apiResults ? <Spinner /> : <NewsFeed />}
-      <NewsFeed apiResults={apiResults} />
+      {!apiResults ? <HashLoader /> : <NewsFeed apiResults={apiResults} />}
     </>
   );
 }

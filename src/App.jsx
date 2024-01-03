@@ -1,4 +1,3 @@
-
 // API:
 // Front page besteht aus fixiert 20 relevanten(!) neuen news. D.h. keine Seite 2
 // Alle news absteigend via:
@@ -44,6 +43,7 @@ function App() {
   return (
     <>
       <SearchBar placeholder="Search..." onSearchChange={handleSearchChange} onSearch={handleSearch} />
+      {!apiResults ? <Spinner /> : <NewsFeed />}
       <NewsFeed apiResults={apiResults} />
     </>
   );

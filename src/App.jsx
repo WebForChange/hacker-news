@@ -10,6 +10,7 @@ import { useCallback, useEffect, useState } from "react";
 
 import NewsFeed from "./components/NewsFeed";
 import SearchBar from "./components/SearchBar";
+import { HashLoader } from "react-spinners";
 import Navbar from "./components/NavBar";
 
 function App() {
@@ -25,9 +26,10 @@ function App() {
   };
 
   const handleSearch = () => {
+    setApiResults(false);
     console.log("Search triggered with term:", searchTerm);
     setApiLink(
-      `http://hn.algolia.com/api/v1/search_by_date?query=${searchTerm}&tags=story`
+      `https://hn.algolia.com/api/v1/search_by_date?query=${searchTerm}&tags=story`
     );
     // Todo: Add search logic here
   };

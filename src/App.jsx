@@ -10,6 +10,7 @@ import { useCallback, useEffect, useState } from "react";
 
 import NewsFeed from "./components/NewsFeed";
 import SearchBar from "./components/SearchBar";
+import { HashLoader } from "react-spinners";
 
 function App() {
   const [apiLink, setApiLink] = useState("https://hn.algolia.com/api/v1/search_by_date?&tags=front_page");
@@ -43,8 +44,7 @@ function App() {
   return (
     <>
       <SearchBar placeholder="Search..." onSearchChange={handleSearchChange} onSearch={handleSearch} />
-      {!apiResults ? <Spinner /> : <NewsFeed />}
-      <NewsFeed apiResults={apiResults} />
+      {!apiResults ? <HashLoader color="#36d7b7" /> : <NewsFeed apiResults={apiResults} />}
     </>
   );
 }

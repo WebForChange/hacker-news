@@ -8,8 +8,17 @@ const SearchBar = ({ placeholder, onSearchChange, onSearch }) => {
   return (
     <div className="flex justify-start mt-5 max-w-screen-2xl mx-auto">
       <div className="flex border-2 border-gray-200 rounded">
-        <input type="text" className="px-4 py-2 w-80" placeholder={placeholder} onChange={onSearchChange} onKeyDown={handleKeyDown} />
-        <button className="px-4 text-white bg-blue-500 border-l" onClick={onSearch}>
+        <input
+          type="text"
+          className="px-4 py-2 w-80 focus:outline-none focus:border focus:border-red-500"
+          placeholder={placeholder}
+          onChange={onSearchChange}
+          onKeyDown={handleKeyDown}
+        />
+        <button
+          className="px-4 text-white bg-orange-600 border-l"
+          onClick={onSearch}
+        >
           Search
         </button>
       </div>

@@ -30,12 +30,12 @@ function App() {
   const handleSearch = () => {
     setApiResults(false);
     console.log("Search triggered with term:", searchTerm);
-    setApiLink(`https://hn.algolia.com/api/v1/search_by_date?query=${searchTerm}&tags=story`);
-    // Todo: Add search logic here
+    setApiLink(
+      `https://hn.algolia.com/api/v1/search_by_date?query=${searchTerm}&tags=story`
+    );
   };
 
   const getData = async () => {
-    // console.log("Fetching data from:", apiLink);
     try {
       await axios.get(apiLink).then((news) => {
         setApiResults(news.data);
@@ -45,19 +45,6 @@ function App() {
       console.error("Error fetching data:", error);
     }
   };
-
-  // function getData() {
-  //   // console.log("Fetching data from:", apiLink);
-  //   axios
-  //     .get(apiLink)
-  //     .then((news) => {
-  //       // console.log("Data fetched successfully:", news.data);
-  //       setApiResults(news.data);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching data:", error);
-  //     });
-  // }
 
   useEffect(() => {
     getData();

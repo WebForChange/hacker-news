@@ -15,9 +15,7 @@ import Navbar from "./components/NavBar";
 import axios from "axios";
 
 function App() {
-  const [apiLink, setApiLink] = useState(
-    "https://hn.algolia.com/api/v1/search_by_date?&tags=front_page"
-  );
+  const [apiLink, setApiLink] = useState("https://hn.algolia.com/api/v1/search_by_date?&tags=front_page");
   const [apiResults, setApiResults] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -29,24 +27,33 @@ function App() {
   const handleSearch = () => {
     setApiResults(false);
     console.log("Search triggered with term:", searchTerm);
-    setApiLink(
-      `https://hn.algolia.com/api/v1/search_by_date?query=${searchTerm}&tags=story`
-    );
+    setApiLink(`https://hn.algolia.com/api/v1/search_by_date?query=${searchTerm}&tags=story`);
     // Todo: Add search logic here
   };
 
-  function getData() {
+  const getData = async () => {
     // console.log("Fetching data from:", apiLink);
-    axios
-      .get(apiLink)
-      .then((news) => {
-        // console.log("Data fetched successfully:", news.data);
+    try {
+      await axios.get(apiLink).then((news) => {
         setApiResults(news.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
       });
-  }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  // function getData() {
+  //   // console.log("Fetching data from:", apiLink);
+  //   axios
+  //     .get(apiLink)
+  //     .then((news) => {
+  //       // console.log("Data fetched successfully:", news.data);
+  //       setApiResults(news.data);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching data:", error);
+  //     });
+  // }
 
   useEffect(() => {
     getData();

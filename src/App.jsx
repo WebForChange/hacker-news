@@ -12,6 +12,7 @@ import NewsFeed from "./components/NewsFeed";
 import SearchBar from "./components/SearchBar";
 import { HashLoader } from "react-spinners";
 import Navbar from "./components/NavBar";
+import axios from "axios";
 
 function App() {
   const [apiLink, setApiLink] = useState(
@@ -34,14 +35,18 @@ function App() {
     // Todo: Add search logic here
   };
 
-  const getData = () => {
-    fetch(apiLink)
-      .then((response) => response.json())
+  function getData() {
+    // console.log("Fetching data from:", apiLink);
+    axios
+      .get(apiLink)
       .then((news) => {
-        console.log(news);
-        setApiResults(news);
+        // console.log("Data fetched successfully:", news.data);
+        setApiResults(news.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
       });
-  };
+  }
 
   useEffect(() => {
     getData();
@@ -49,13 +54,8 @@ function App() {
 
   return (
     <div className="mt-2 mx-0 sm:mx-20 md:mx-40 lg:mx-80">
-      <Navbar />
-      <SearchBar
-        placeholder="Search..."
-        onSearchChange={handleSearchChange}
-        onSearch={handleSearch}
-      />
-      <NewsFeed apiResults={apiResults} />
+      <SearchBar placeholder="Search..." onSearchChange={handleSearchChange} onSearch={handleSearch} />
+      {!apiResults ? <HashLoader color="#36d7b7" /> : <NewsFeed apiResults={apiResults} />}
     </div>
   );
 }

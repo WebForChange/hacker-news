@@ -10,6 +10,7 @@ import { useCallback, useEffect, useState } from "react";
 
 import NewsFeed from "./components/NewsFeed";
 import SearchBar from "./components/SearchBar";
+import Error from "./components/Error";
 import { HashLoader } from "react-spinners";
 import Navbar from "./components/NavBar";
 import axios from "axios";
@@ -20,6 +21,7 @@ function App() {
   );
   const [apiResults, setApiResults] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [error, setError] = useState(false);
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
@@ -42,6 +44,7 @@ function App() {
         setApiResults(news.data);
       });
     } catch (error) {
+      setError(error);
       console.error("Error fetching data:", error);
     }
   };
@@ -71,11 +74,7 @@ function App() {
         onSearchChange={handleSearchChange}
         onSearch={handleSearch}
       />
-      {!apiResults ? (
-        <HashLoader color="#ea580c" />
-      ) : (
-        <NewsFeed apiResults={apiResults} />
-      )}
+      {!apiResults && !error ? <HashLoader color="#ea580c" /> : apiResults && !error ? <NewsFeed apiResults={apiResults} /> : <Error error={error} />}
     </div>
   );
 }

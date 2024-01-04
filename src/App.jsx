@@ -10,6 +10,7 @@ import { useCallback, useEffect, useState } from "react";
 
 import NewsFeed from "./components/NewsFeed";
 import SearchBar from "./components/SearchBar";
+import Error from "./components/Error";
 import { HashLoader } from "react-spinners";
 import Navbar from "./components/NavBar";
 import axios from "axios";
@@ -20,6 +21,7 @@ function App() {
   );
   const [apiResults, setApiResults] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [error, setError] = useState(false);
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
@@ -32,32 +34,18 @@ function App() {
     setApiLink(
       `https://hn.algolia.com/api/v1/search_by_date?query=${searchTerm}&tags=story`
     );
-    // Todo: Add search logic here
   };
 
   const getData = async () => {
-    // console.log("Fetching data from:", apiLink);
     try {
       await axios.get(apiLink).then((news) => {
         setApiResults(news.data);
       });
     } catch (error) {
+      setError(error);
       console.error("Error fetching data:", error);
     }
   };
-
-  // function getData() {
-  //   // console.log("Fetching data from:", apiLink);
-  //   axios
-  //     .get(apiLink)
-  //     .then((news) => {
-  //       // console.log("Data fetched successfully:", news.data);
-  //       setApiResults(news.data);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching data:", error);
-  //     });
-  // }
 
   useEffect(() => {
     getData();
@@ -71,11 +59,7 @@ function App() {
         onSearchChange={handleSearchChange}
         onSearch={handleSearch}
       />
-      {!apiResults ? (
-        <HashLoader color="#ea580c" />
-      ) : (
-        <NewsFeed apiResults={apiResults} />
-      )}
+      {!apiResults && !error ? <HashLoader color="#ea580c" /> : apiResults && !error ? <NewsFeed apiResults={apiResults} /> : <Error error={error} />}
     </div>
   );
 }

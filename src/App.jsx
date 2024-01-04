@@ -61,8 +61,17 @@ function App() {
 
   return (
     <div className="mt-2 mx-0 sm:mx-20 md:mx-40 lg:mx-80">
-      <SearchBar placeholder="Search..." onSearchChange={handleSearchChange} onSearch={handleSearch} />
-      {!apiResults ? <HashLoader color="#36d7b7" /> : <NewsFeed apiResults={apiResults} />}
+      <Navbar />
+      <SearchBar
+        placeholder="Search..."
+        onSearchChange={handleSearchChange}
+        onSearch={handleSearch}
+      />
+      {!apiResults ? (
+        <HashLoader color="#36d7b7" />
+      ) : (
+        <NewsFeed apiResults={apiResults} />
+      )}
     </div>
   );
 }

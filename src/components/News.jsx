@@ -8,14 +8,14 @@ export default function News({ currentNews }) {
   }
 
   return (
+    <a aria-label={currentNews.title} className="font-semibold" href={currentNews.url}>
     <li aria-label="news item" className="bg-orange-50 p-2 hover:bg-orange-200 cursor-pointer transition ease-in-out">
-      <a aria-label={currentNews.title} className="font-semibold" href={currentNews.url}>
-        {currentNews.title}
-      </a>
+        <h2>{currentNews.title}</h2>
       <br />
       <p aria-label="author and date created" className="text-sm">
         From: {currentNews.author} on {dateChange(currentNews.created_at)}
       </p>
     </li>
+    </a>
   );
 }

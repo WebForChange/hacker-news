@@ -16,12 +16,11 @@ import Navbar from "./components/NavBar";
 import axios from "axios";
 
 function App() {
-  const [apiLink, setApiLink] = useState(
-    "https://hn.algolia.com/api/v1/search_by_date?&tags=front_page"
-  );
+  const [apiLink, setApiLink] = useState("https://hn.algolia.com/api/v1/search_by_date?&tags=front_page");
   const [apiResults, setApiResults] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [error, setError] = useState(false);
+  const [currentSite, setCurrentSite] = useState(1);
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
@@ -31,9 +30,7 @@ function App() {
   const handleSearch = () => {
     setApiResults(false);
     console.log("Search triggered with term:", searchTerm);
-    setApiLink(
-      `https://hn.algolia.com/api/v1/search_by_date?query=${searchTerm}&tags=story`
-    );
+    setApiLink(`https://hn.algolia.com/api/v1/search_by_date?query=${searchTerm}&tags=story`);
     // Todo: Add search logic here
   };
 
@@ -69,12 +66,8 @@ function App() {
   return (
     <div className="mt-2 mx-0 sm:mx-20 md:mx-40 lg:mx-80">
       <Navbar />
-      <SearchBar
-        placeholder="Search..."
-        onSearchChange={handleSearchChange}
-        onSearch={handleSearch}
-      />
-      {!apiResults && !error ? <HashLoader color="#ea580c" /> : apiResults && !error ? <NewsFeed apiResults={apiResults} /> : <Error error={error} />}
+      <SearchBar placeholder="Search..." onSearchChange={handleSearchChange} onSearch={handleSearch} />
+      {!apiResults && !error ? <HashLoader color="#ea580c" /> : apiResults && !error ? <NewsFeed apiResults={apiResults} currentSite={currentSite} setCurrentSite={setCurrentSite} /> : <Error error={error} />}
     </div>
   );
 }

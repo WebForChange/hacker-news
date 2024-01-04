@@ -10,10 +10,10 @@ const SearchBar = ({ placeholder, onSearchChange, onSearch }) => {
       aria-label="search bar"
       className="flex justify-start mt-5 max-w-screen-2xl mx-auto"
     >
-      <div className="flex flex-wrap rounded">
+      <div className="flex flex-wrap justify-end rounded">
         <input
           type="text"
-          className="px-4 py-2 w-80 focus:outline-none focus:border focus:border-red-500"
+          className="px-4 py-2 w-full sm:w-80 focus:outline-none focus:border focus:border-red-500"
           placeholder={placeholder}
           onChange={onSearchChange}
           onKeyDown={handleKeyDown}

@@ -6,7 +6,10 @@ const SearchBar = ({ placeholder, onSearchChange, onSearch }) => {
   };
 
   return (
-    <div className="flex justify-start mt-5 max-w-screen-2xl mx-auto">
+    <div
+      aria-label="search bar"
+      className="flex justify-start mt-5 max-w-screen-2xl mx-auto"
+    >
       <div className="flex flex-wrap rounded">
         <input
           type="text"
@@ -16,6 +19,7 @@ const SearchBar = ({ placeholder, onSearchChange, onSearch }) => {
           onKeyDown={handleKeyDown}
         />
         <button
+          aria-label="search"
           className="px-4 min-h-10 text-white bg-orange-600 border-l"
           onClick={onSearch}
         >

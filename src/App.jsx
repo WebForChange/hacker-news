@@ -30,9 +30,7 @@ function App() {
   const handleSearch = () => {
     setApiResults(false);
     console.log("Search triggered with term:", searchTerm);
-    setApiLink(
-      `https://hn.algolia.com/api/v1/search_by_date?query=${searchTerm}&tags=story`
-    );
+    setApiLink(`https://hn.algolia.com/api/v1/search_by_date?query=${searchTerm}&tags=story`);
   };
 
   const getData = async () => {
@@ -54,7 +52,7 @@ function App() {
     <div className="mt-2 mx-0 sm:mx-20 md:mx-40 lg:mx-80">
       <Navbar />
       <SearchBar placeholder="Search..." onSearchChange={handleSearchChange} onSearch={handleSearch} />
-      {!apiResults && !error ? <HashLoader color="#ea580c" /> : apiResults && !error ? <NewsFeed apiResults={apiResults} currentSite={currentSite} setCurrentSite={setCurrentSite} /> : <Error error={error} />}
+      {!error ? <NewsFeed apiResults={apiResults} currentSite={currentSite} setCurrentSite={setCurrentSite} /> : <Error error={error} />}
     </div>
   );
 }
